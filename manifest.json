@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+  "name": "WaniKani Font Randomizer",
+  "version": "1.0",
+  "description": "Randomly changes the font of kanji, hiragana, and katakana in WaniKani reviews",
+  "permissions": [
+    "https://www.wanikani.com/*",
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.wanikani.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "browser_action": {
+    "default_icon": "icons/icon48.png",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "48": "icons/icon48.png"
+  },
+  "author": "Alex Nemeth",
+  "homepage_url": "https://github.com/definitelynotagoblin/wanikani-font-randomizer"
+}

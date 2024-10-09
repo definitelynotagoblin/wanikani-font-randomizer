@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      width: 250px;
+      padding: 10px;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .sub-options {
+      margin-left: 20px;
+    }
+    .disabled {
+      color: #888;
+      pointer-events: none;
+    }
+    #shuffleFont {
+      margin-top: 10px;
+      width: 100%;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+  <label>
+    <input type="checkbox" id="enabledGlobal"> Enable Font Randomizer
+  </label>
+  <div class="sub-options">
+    <label>
+      <input type="checkbox" id="enabledReview"> Enable for Reviews
+    </label>
+    <label>
+      <input type="checkbox" id="enabledQuiz"> Enable for Quiz
+    </label>
+    <label>
+      <input type="checkbox" id="enabledExtraStudy"> Enable for Extra Study
+    </label>
+  </div>
+  <button id="shuffleFont">Shuffle Font</button>
+  <script src="popup.js"></script>
+</body>
+</html>
