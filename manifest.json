@@ -11,7 +11,7 @@
     {
       "matches": ["https://www.wanikani.com/*"],
       "js": ["content.js"],
-      "run_at": "document_start"
+      "run_at": "document_idle"
     }
   ],
   "browser_action": {

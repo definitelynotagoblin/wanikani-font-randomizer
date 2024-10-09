@@ -146,6 +146,32 @@ function shuffleFont() {
     }
 }
 
+function setupObserver() {
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'childList') {
+                const currentUrl = window.location.href;
+                if (currentUrl.endsWith('/quiz') || currentUrl.endsWith('/review') || currentUrl.includes('/extra_study')) {
+                    loadSettings().then(() => {
+                        retryChangeJapaneseFonts();
+                    });
+                } else {
+                    selectedFont = null;
+                }
+            }
+        });
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+}
+
+function initExtension() {
+    loadSettings().then(() => {
+        retryChangeJapaneseFonts();
+        setupObserver();
+    });
+}
+
 // Listen for messages from the popup
 browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === "updateSettings") {
@@ -157,21 +183,9 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 });
 
-// MutationObserver to detect URL changes
-const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-        if (mutation.type === 'childList') {
-            const currentUrl = window.location.href;
-            if (currentUrl.endsWith('/quiz') || currentUrl.endsWith('/review') || currentUrl.includes('/extra_study')) {
-                loadSettings().then(() => {
-                    retryChangeJapaneseFonts();
-                });
-            } else {
-                selectedFont = null;
-            }
-        }
-    });
-});
-
-// Start observing the document with the configured parameters
-observer.observe(document.body, { childList: true, subtree: true });
+// Call initExtension when the DOM is fully loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initExtension);
+} else {
+    initExtension();
+}
