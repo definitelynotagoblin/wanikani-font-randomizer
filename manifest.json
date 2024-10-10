@@ -22,5 +22,11 @@
   },
   "icons": {
     "48": "icons/icon48.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "wanikani-font-randomizer@moz-addon.com"
+    },
+    "gecko_android": {}
   }
 }
